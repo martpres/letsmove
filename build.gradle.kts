@@ -1,6 +1,7 @@
 plugins {
     id("org.springframework.boot") version "2.5.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("at.fh.letsmove.plugins.gitHook")
     java
 }
 
@@ -23,4 +24,8 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.getByName("compileJava") {
+    dependsOn("installGitHooks")
 }
